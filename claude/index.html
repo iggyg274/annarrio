@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ann Arbor Adventure</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="stage">
+    <h1 id="title">ANN ARBOR ADVENTURE</h1>
+    <canvas id="game" width="960" height="576"></canvas>
+
+    <div id="overlay-start" class="overlay">
+      <h2>ANN ARBOR ADVENTURE</h2>
+      <p>A pixel tour of Tree Town, U.S.A.</p>
+      <p class="controls">
+        <b>Arrows / WASD</b> move &amp; jump &nbsp;•&nbsp;
+        <b>Space</b> jump &nbsp;•&nbsp; <b>M</b> mute music
+      </p>
+      <button id="btn-start">START GAME</button>
+      <button id="btn-credits">CREDITS</button>
+    </div>
+
+    <div id="overlay-credits" class="overlay hidden">
+      <h2>CREDITS</h2>
+      <p>Game code, level design &amp; music: generated for this project.</p>
+      <p>Character &amp; world tiles: <b>Kenney "Pixel Platformer"</b> (CC0) &mdash; kenney.nl</p>
+      <p>Urban city buildings/props tileset by <b>Dlou Saiyan</b>, used with permission.
+         Not for resale or redistribution.</p>
+      <p class="fine">Ann Arbor landmark names are stylized, low-fi parody signage —
+         no official logos or trademarked artwork are used.</p>
+      <button id="btn-credits-back">BACK</button>
+    </div>
+
+    <div id="overlay-win" class="overlay hidden">
+      <h2>GO BLUE!</h2>
+      <p id="win-stats"></p>
+      <button id="btn-restart-win">PLAY AGAIN</button>
+    </div>
+
+    <div id="overlay-dead" class="overlay hidden">
+      <h2>GAME OVER</h2>
+      <p id="dead-stats"></p>
+      <button id="btn-restart-dead">TRY AGAIN</button>
+    </div>
+
+    <div id="hud" class="hidden">
+      <div id="hud-hearts"></div>
+      <div id="hud-score">SCORE: <span id="score-val">0</span></div>
+      <div id="hud-coins">COINS: <span id="coin-val">0</span></div>
+      <button id="btn-mute">🔊</button>
+    </div>
+
+    <p class="footer">Urban tileset &copy; Dlou Saiyan (credit required by license) &middot;
+      Kenney Pixel Platformer kit is CC0</p>
+  </div>
+
+  <script src="js/audio.js"></script>
+  <script src="js/level.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>

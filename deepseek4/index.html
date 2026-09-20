@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ANN ARBOR RUNNER — a tiny Michigan platformer</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; }
+  body {
+    background: #0d1220;
+    color: #e8eef8;
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh; overflow: hidden;
+  }
+  #wrap { position: relative; width: min(96vw, calc(96vh * 16 / 9)); }
+  canvas {
+    display: block; width: 100%; height: auto; aspect-ratio: 16 / 9;
+    background: #bcd6ef; image-rendering: pixelated; border-radius: 6px;
+    box-shadow: 0 12px 40px rgba(0,0,0,.6);
+  }
+  .overlay {
+    position: absolute; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center;
+    background: rgba(8,12,24,.78); border-radius: 6px;
+    padding: 20px; z-index: 10;
+  }
+  .overlay.hidden { display: none; }
+  h1 { margin: 0 0 4px; font-size: 42px; letter-spacing: 2px; color: #ffc53d; text-shadow: 0 3px 0 #7f5c1a; }
+  .maize { color: #ffcb05; } .blue { color: #4a7cff; }
+  .tagline { margin: 0 0 14px; font-size: 15px; opacity: .9; }
+  .panel { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 10px; padding: 14px 22px; max-width: 560px; margin-bottom: 14px; }
+  .panel p { margin: 6px 0; font-size: 14px; line-height: 1.5; }
+  kbd { background:#1b2436; border:1px solid #3a4a6b; border-radius:4px; padding: 1px 6px; font-family: inherit; font-size:12px; }
+  .bigbtn { font-size: 20px; font-weight: 700; color: #10203f; background: #ffcb05; border: none; border-radius: 8px; padding: 10px 26px; cursor: pointer; letter-spacing: 1px; box-shadow: 0 4px 0 #a87f14; }
+  .bigbtn:hover { filter: brightness(1.05); }
+  .creds { font-size: 11px; opacity: .65; margin-top: 12px; }
+  #hudHint { color:#0e3; }
+</style>
+</head>
+<body>
+  <div id="wrap">
+    <canvas id="game" width="960" height="540"></canvas>
+
+    <!-- Title / start screen -->
+    <div id="overlay-title" class="overlay">
+      <h1>ANN ARBOR <span class="blue">RUNNER</span></h1>
+      <p class="tagline">A tiny, low-fi platformer through the heart of <span class="maize">maize</span> &amp; <span class="blue">blue</span> country.</p>
+      <div class="panel">
+        <p><kbd>←</kbd><kbd>→</kbd> or <kbd>A</kbd><kbd>D</kbd> — run &nbsp;•&nbsp; <kbd>Space</kbd>/<kbd>W</kbd>/<kbd>↑</kbd> — jump</p>
+        <p>Stomp the drone rovers. Grab the coins. Dodge the Arb birds.</p>
+        <p id="hudHint">Hearts in the HUD are your health — avoid the Diag traffic!</p>
+      </div>
+      <button class="bigbtn" id="btnStart">▶ PLAY</button>
+      <p class="creds">Background tiles © Dlou Saiyan (urbantileset). Gameplay kit by Kenney (CC0). A loving, unofficial, parody-level homage to Ann Arbor.</p>
+    </div>
+
+    <!-- Pause -->
+    <div id="overlay-pause" class="overlay hidden">
+      <h1 style="font-size:30px;">PAUSED</h1>
+      <p style="margin:10px 0 0;">Press <kbd>P</kbd> to resume.</p>
+    </div>
+
+    <!-- Game over -->
+    <div id="overlay-over" class="overlay hidden">
+      <h1 style="font-size:34px; color:#ff8a6b;">GAME OVER</h1>
+      <p>Burton Tower's carillon tolls for you…</p>
+      <button class="bigbtn" id="btnRetry">↻ TRY AGAIN</button>
+    </div>
+
+    <!-- Victory -->
+    <div id="overlay-win" class="overlay hidden">
+      <h1 style="font-size:34px;">GO <span class="blue">BLUE</span>!</h1>
+      <p style="margin:6px 0 0;">You made it across State Street. Hail to the victors! 🏁</p>
+      <p>Score: <b id="winScore">0</b> &nbsp;•&nbsp; Coins: <b id="winCoins">0</b></p>
+      <p class="creds" style="max-width:520px;line-height:1.5;">
+        Art — background cityscape &amp; street props © <b>Dlou Saiyan</b> (urbantileset, used with credit; may not be resold/redistributed).
+        Gameplay sprites, tiles &amp; characters by Kenney (CC0, kenney.nl). Music &amp; SFX generated live with the Web Audio API.
+        Ann Arbor landmarks are stylized low-fi signage, not real building reproductions.
+      </p>
+      <button class="bigbtn" id="btnAgain">↻ PLAY AGAIN</button>
+    </div>
+  </div>
+
+  <script src="audio.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maize &amp; Blue: An Ann Arbor Platformer</title>
+<style>
+  html, body { margin: 0; padding: 0; background: #10131c; height: 100%; overflow: hidden;
+    font-family: 'Courier New', monospace; }
+  #wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; }
+  canvas { image-rendering: pixelated; image-rendering: crisp-edges; background: #7ec8e3;
+    box-shadow: 0 0 40px rgba(0,0,0,.6); }
+  #credit { color: #6b7280; font-size: 11px; margin-top: 8px; text-align: center; }
+</style>
+</head>
+<body>
+<div id="wrap">
+  <canvas id="game" width="640" height="360"></canvas>
+  <div id="credit">Urban tileset © Dlou Saiyan &nbsp;•&nbsp; Pixel Platformer kit © Kenney (CC0)</div>
+</div>
+<script src="game.js"></script>
+</body>
+</html>

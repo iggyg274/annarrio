@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Maize &amp; Blue — An Ann Arbor Platformer</title>
+  <link rel="icon" href="data:,">
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; background: #0b1220; overflow: hidden; }
+    body { display: flex; align-items: center; justify-content: center; }
+    #game {
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+      background: #63bdf2;
+      touch-action: none;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+    }
+    /* tiny always-reachable license line (urban tileset requires credit) */
+    #credits {
+      position: fixed; left: 6px; bottom: 4px; z-index: 5;
+      font: 10px monospace; color: rgba(255, 255, 255, 0.35); pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="game" width="576" height="360"></canvas>
+  <div id="credits">Urban tileset © Dlou Saiyan · Kenney assets CC0</div>
+
+  <!-- plain scripts, in order — no modules/fetch so this works straight from file:// -->
+  <script src="js/urban_rects.js"></script>
+  <script src="js/assets.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/level.js"></script>
+  <script src="js/entities.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>

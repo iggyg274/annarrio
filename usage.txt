@@ -1,0 +1,33 @@
+# corrections are the additional prompts given to get a better result
+
+Sonnet 5
+directory: claude
+machine: claude
+cost: $5.02
+corrections: 1
+runtime: 5 minutes
+
+
+Qwen3.8-27B
+directory: qwen38-27b
+machine: DGX Spark 128GB
+runtime: 28 minutes
+corrections: 1
+
+Qwen3.8-Flash-Next
+directory: qwen3.8-flash
+machine: RTX 6000
+runtime: 15 minutes
+corrections: 0
+
+Deepseek-V4
+directory: deepseek4
+machine: RTX 6000
+runtime: 40m
+corrections:
+
+Opus
+directory: opus
+machine: claude
+runtime: 15m
+corrections:

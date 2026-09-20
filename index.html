@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ann Arbor Platformer Versions</title>
+<style>
+  :root {
+    --bg: #f6f4ef;
+    --card: #ffffff;
+    --text: #1d1f23;
+    --muted: #666b73;
+    --border: #e1ddd3;
+    --accent: #00274c;
+    --maize: #ffcb05;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14161a;
+      --card: #1d2026;
+      --text: #e8e6e1;
+      --muted: #9aa0a8;
+      --border: #2e323a;
+      --accent: #ffcb05;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  main { max-width: 1100px; margin: 0 auto; padding: 32px 16px 64px; }
+  header { margin-bottom: 28px; border-bottom: 4px solid var(--maize); padding-bottom: 16px; }
+  h1 { margin: 0 0 6px; font-size: 1.8rem; color: var(--accent); }
+  header p { margin: 0; color: var(--muted); max-width: 70ch; }
+  .entry {
+    display: grid;
+    grid-template-columns: minmax(220px, 1fr) 2fr;
+    gap: 24px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .entry h2 { margin: 0 0 4px; font-size: 1.3rem; }
+  .entry code { color: var(--muted); font-size: .85rem; }
+  dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; margin: 16px 0 0; }
+  dt { color: var(--muted); font-size: .9rem; }
+  dd { margin: 0; font-variant-numeric: tabular-nums; }
+  .notes { margin-top: 14px; color: var(--muted); font-size: .9rem; }
+  .shot {
+    display: block;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: #000;
+  }
+  .shot img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .2s; }
+  .shot:hover img, .shot:focus-visible img { transform: scale(1.02); }
+  .shot::after {
+    content: "▶ Play";
+    position: absolute; right: 12px; bottom: 12px;
+    background: var(--maize); color: #00274c;
+    font-weight: 700; padding: 4px 12px; border-radius: 999px;
+    opacity: 0; transition: opacity .2s;
+  }
+  .shot:hover::after, .shot:focus-visible::after { opacity: 1; }
+  .placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    color: #9aa0a8; font-size: .95rem; text-align: center; padding: 16px;
+    background: repeating-linear-gradient(45deg, #1d2026, #1d2026 12px, #262a31 12px, #262a31 24px);
+    font-weight: 600;
+  }
+  @media (max-width: 700px) {
+    .entry { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Ann Arbor Platformer: Model Comparison</h1>
+    <div width="80%">Below you will find several versions of the same video game, each created by a different AI model.  Three frontier models (Sonnet, Opus, and Fable) were used as comparison (Opus is probably the best).  The rest of the versions were built by local models on local hardware.  Qwen3.8-Flash and Deepseek(s) are very good.  You will see notable degradation with the smaller models.</div>
+<br>
+    <div>All models were given the same Graphics template to work with, some did a better job than others (and Qwen3.8 27B decided to not use the graphics at all).  All music was generated on the fly by the models</div>
+<br>
+<div>Each version was built from the same prompt (<a href="GAME.txt">GAME.txt</a>).<br>
+  <div>Information about Ann Arbor landmarks was not given -models figured that out themselves</div><br>
+    <br>  Click a screenshot to play. </div>
+  </header>
+  <div id="list"></div>
+</main>
+<script>
+  // Data from usage.txt. Versions not listed there show "—" for missing fields.
+  const versions = [
+
+      { type: "Local Dense", name: "Qwen3.8-27B", quant: "8b", size: "~27GB", dir: "qwen38-27b", machine: "DGX Spark", runtime: "28 minutes",
+	notes: "A 2nd prompt encouraging it to use the graphics library was given, but it ignored the command" },
+
+      { type: "Local MOE", name: "Qwen3.8-Flash-Next",
+	quant: "4b", size: "~100GB",
+	dir: "qwen3.8-flash", machine: "RTX 6000", runtime: "15 minutes", notes:"lookup table in RAM" },
+
+      { type: "Local MOE", name: "Deepseek-V4",
+	quant: "4b", size: "~155GB",
+	dir: "deepseek4", machine: "RTX 6000", runtime: "40 minutes", notes:"MOE offload" },
+
+      { type: "Local MOE", name: "Deepseek-V4.1",
+	quant: "4", size: "~380GB",
+	dir: "deepseekv41", notes: "Couldn't fit in local hardware" },
+
+      { type: "Frontier", name: "Sonnet 5",
+	quant: "8b", size: "~27GB",
+	dir: "claude", machine: "claude", cost: "$5.02", corrections: "1", runtime: "5 minutes" },
+
+      { type: "Frontier", name: "Opus",
+	quant: "8b", size: "~27GB",
+	dir: "opus", machine: "claude", runtime: "15 minutes" },
+
+      { type: "Frontier", name: "Fable",
+	quant: "8b", size: "~27GB",
+	dir: "fable", notes: "Not yet in usage.txt." },
+  ];
+
+  const fields = [["type", "Type"],
+		  ["quant", "Quant"],
+		  ["size", "Size"],
+		  ["machine", "Machine"], ["runtime", "Runtime"], ["cost", "Cost"]];
+  const list = document.getElementById("list");
+
+  for (const v of versions) {
+    const entry = document.createElement("section");
+    entry.className = "entry";
+
+    const info = document.createElement("div");
+    const h = document.createElement("h2");
+    h.textContent = v.name;
+    const dirLabel = document.createElement("code");
+    dirLabel.textContent = v.dir + "/";
+    info.append(h, dirLabel);
+
+    const dl = document.createElement("dl");
+    for (const [key, label] of fields) {
+      const dt = document.createElement("dt");
+      dt.textContent = label;
+      const dd = document.createElement("dd");
+      dd.textContent = v[key] ?? "—";
+      dl.append(dt, dd);
+    }
+    info.append(dl);
+    if (v.notes) {
+      const p = document.createElement("p");
+      p.className = "notes";
+      p.textContent = v.notes;
+      info.append(p);
+    }
+
+    const link = document.createElement("a");
+    link.className = "shot";
+    link.href = v.dir + "/index.html";
+    link.setAttribute("aria-label", "Play " + v.name + " version");
+    const img = document.createElement("img");
+    img.src = v.dir + "/screenshot.png";
+    img.alt = v.name + " screenshot";
+    img.loading = "lazy";
+    img.onerror = () => {
+      const ph = document.createElement("div");
+      ph.className = "placeholder";
+      ph.textContent = "No screenshot yet — click to play";
+      img.replaceWith(ph);
+    };
+    link.append(img);
+
+    entry.append(info, link);
+    list.append(entry);
+  }
+</script>
+</body>
+</html>

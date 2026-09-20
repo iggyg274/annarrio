@@ -1,0 +1,12 @@
+{
+  "name": "maize-and-blue",
+  "version": "1.0.0",
+  "private": true,
+  "description": "An Ann Arbor 2D platformer. The game itself has zero dependencies; Playwright is used only by test/browser_check.js.",
+  "scripts": {
+    "test": "node test/smoke.js && node test/audio_smoke.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.63.0"
+  }
+}

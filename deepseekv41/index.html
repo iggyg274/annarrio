@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ANN ARBOR BROTHERS — A Michigan Platformer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="wrap">
+  <header id="topbar">
+    <h1>ANN ARBOR BROTHERS</h1>
+    <p class="tagline">A low-fi Michigan platformer &middot; one level, one town</p>
+  </header>
+
+  <div id="stage">
+    <canvas id="game" width="512" height="288" tabindex="0"
+            aria-label="Ann Arbor Brothers game canvas"></canvas>
+    <div id="loading" class="overlay">
+      <p class="big">LOADING ASSETS&hellip;</p>
+      <p class="small" id="loading-detail">waking up the pixel crew</p>
+    </div>
+    <div id="fatal" class="overlay hidden">
+      <p class="big">ASSETS COULD NOT LOAD</p>
+      <p class="small" id="fatal-detail"></p>
+      <p class="small">If you opened this file with a browser flag that blocks local
+        file reads, run a tiny static server in this folder instead, e.g.
+        <code>python3 -m http.server 8000</code> and visit
+        <code>http://localhost:8000/</code>.</p>
+    </div>
+  </div>
+
+  <div id="controls">
+    <div class="keys">
+      <span class="k"><b>&larr; &rarr;</b> / <b>A D</b> move</span>
+      <span class="k"><b>SPACE</b> / <b>W</b> / <b>&uarr;</b> jump</span>
+      <span class="k"><b>X</b> sprint</span>
+      <span class="k"><b>P</b> pause</span>
+      <span class="k"><b>R</b> restart</span>
+      <span class="k"><b>M</b> mute music</span>
+      <span class="k"><b>C</b> credits</span>
+    </div>
+    <div id="touch" aria-hidden="true">
+      <button type="button" data-act="left" aria-label="move left">&larr;</button>
+      <button type="button" data-act="right" aria-label="move right">&rarr;</button>
+      <button type="button" data-act="jump" aria-label="jump">JUMP</button>
+    </div>
+  </div>
+
+  <footer id="credits">
+    <p><b>Asset credits</b> &mdash; world tiles, characters &amp; background fills:
+      <a href="sprites/License.txt">Kenney &ldquo;Pixel Platformer&rdquo;</a> kit, CC0, no restrictions.
+      Urban city tileset (&ldquo;Urban City Tileset Basic 32&times;32&rdquo;, used as background decoration only):
+      <b>Dlou Saiyan</b> &mdash; <a href="https://www.dlousaiyan.com/">dlousaiyan.com</a>,
+      used with permission for this project (no resale/repackaging).</p>
+    <p><b>Ann Arbor flavor notice</b> &mdash; neither asset pack contains real Ann Arbor
+      artwork. Every landmark here is <em>low-fi parody signage</em>: a generic building
+      sprite plus a painted-on text label (MICHIGAN STADIUM, THE DIAG, BURTON TOWER &hellip;).
+      No real logos, no exact reproductions, no new pixel art invented to imitate a landmark.</p>
+    <p><b>Audio</b> &mdash; no audio files anywhere: the chiptune music and every sound effect are
+      generated live in JavaScript with the Web Audio API (oscillators + gain envelopes).</p>
+  </footer>
+</div>
+
+<!-- classic scripts (no modules) so index.html works straight off the filesystem -->
+<script src="js/assets.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/level.js"></script>
+<script src="js/game.js"></script>
+<script>
+  // Kick off once every script above has been parsed.
+  window.addEventListener('load', function () {
+    try {
+      window.AAB && window.AAB.boot();
+    } catch (err) {
+      var f = document.getElementById('fatal');
+      var d = document.getElementById('fatal-detail');
+      if (f && d) { f.classList.remove('hidden'); d.textContent = String(err && err.message || err); }
+      console.error(err);
+    }
+  });
+</script>
+</body>
+</html>

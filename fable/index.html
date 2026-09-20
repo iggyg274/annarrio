@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Super Ann Arbor — a maize & blue platformer</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #00274c; color: #cfe3ff; font-family: "Lucida Console", Monaco, Consolas, monospace; overflow: hidden; }
+  #wrap { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+  canvas { image-rendering: pixelated; image-rendering: crisp-edges; background: #00274c; touch-action: none; }
+  #credit { position: fixed; left: 0; right: 0; bottom: 2px; text-align: center; font-size: 10px; color: #7f9cc0; pointer-events: none; }
+  #credit a { color: #ffcb05; text-decoration: none; pointer-events: auto; }
+  #err { position: fixed; top: 8px; left: 8px; right: 8px; color: #ffb3b3; font-size: 12px; }
+  /* touch controls (shown only on touch devices) */
+  #touch { display: none; position: fixed; inset: 0; pointer-events: none; }
+  body.touch #touch { display: block; }
+  #touch div { position: absolute; bottom: 18px; width: 58px; height: 58px; border-radius: 50%; background: rgba(255,203,5,0.35); border: 2px solid rgba(255,203,5,0.7); pointer-events: auto; user-select: none; -webkit-user-select: none; touch-action: none; }
+  #touch div.on { background: rgba(255,203,5,0.75); }
+  #touch .l { left: 18px; } #touch .r { left: 90px; } #touch .j { right: 18px; width: 72px; height: 72px; }
+</style>
+</head>
+<body>
+<div id="wrap"><canvas id="game" width="480" height="270"></canvas></div>
+<div id="touch"><div class="l" data-btn="left"></div><div class="r" data-btn="right"></div><div class="j" data-btn="jump"></div></div>
+<div id="err"></div>
+<div id="credit">Pixel Platformer art by Kenney (CC0) &middot; Urban City Tileset &copy; <a href="#" onclick="return false">Dlou Saiyan</a> (used with permission/credit) &middot; music generated live with Web Audio</div>
+<script src="audio.js"></script>
+<script src="level.js"></script>
+<script src="game.js"></script>
+</body>
+</html>

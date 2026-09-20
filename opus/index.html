@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Super Annario — An Ann Arbor Platformer</title>
+<style>
+  html, body {
+    margin: 0;
+    height: 100%;
+    background: #0b1530;
+    color: #cbd5e1;
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+    overflow: hidden;
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  #wrap {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  canvas {
+    display: block;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    background: #000;
+    box-shadow: 0 0 0 3px #ffcb05, 0 0 0 6px #00274c, 0 10px 40px rgba(0,0,0,.6);
+    border-radius: 2px;
+  }
+  #credits {
+    font-size: 11px;
+    opacity: .75;
+    text-align: center;
+    padding: 0 12px;
+  }
+  #credits a { color: #ffcb05; }
+  #touch {
+    position: fixed;
+    inset: auto 0 0 0;
+    height: 150px;
+    display: none;
+    pointer-events: none;
+  }
+  body.touch #touch { display: block; }
+  .btn {
+    position: absolute;
+    bottom: 22px;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.14);
+    border: 2px solid rgba(255,255,255,.35);
+    color: #fff;
+    font: bold 22px "Trebuchet MS", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+    touch-action: none;
+  }
+  .btn.on { background: rgba(255,203,5,.45); }
+  #bL { left: 18px; }
+  #bR { left: 104px; }
+  #bB { right: 104px; width: 60px; height: 60px; bottom: 28px; font-size: 16px; }
+  #bA { right: 18px; background: rgba(255,203,5,.22); }
+</style>
+</head>
+<body>
+<div id="wrap">
+  <canvas id="game" width="960" height="540" aria-label="Super Annario game"></canvas>
+  <div id="credits">
+    Urban City Tileset by <a href="https://www.dlousaiyan.com/" target="_blank" rel="noopener">Dlou Saiyan</a> ·
+    Pixel Platformer by <a href="https://www.kenney.nl/" target="_blank" rel="noopener">Kenney</a> (CC0) ·
+    Arrows/WASD move · Space jump · Shift run · P pause · M mute
+  </div>
+</div>
+<div id="touch">
+  <div class="btn" id="bL">◀</div>
+  <div class="btn" id="bR">▶</div>
+  <div class="btn" id="bB">RUN</div>
+  <div class="btn" id="bA">▲</div>
+</div>
+<script src="js/assets.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/render.js"></script>
+<script src="js/level.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>
