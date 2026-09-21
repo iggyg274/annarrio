@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ann Arbor: The Platformer - Level 1</title>
+<meta name="description" content="A single-level 2D browser platformer set in Ann Arbor, Michigan. Built with the Dlou Saiyan urban tileset plus procedurally generated characters, terrain and Web Audio chiptune music.">
+<style>
+/*__CSS__*/
+</style>
+</head>
+<body>
+<div id="frame">
+  <canvas id="game" width="960" height="540" aria-label="Ann Arbor platformer game canvas"></canvas>
+  <div id="scanlines" aria-hidden="true"></div>
+</div>
+<noscript>
+  <p class="fallback">This game needs JavaScript (and the Web Audio API for its music).</p>
+</noscript>
+<p id="fallback" class="fallback" hidden></p>
+<p class="hint">
+  Level 1 &mdash; <strong>A2: One More Mile</strong>
+  (<a href="README.md">README / credits</a>).
+  Arrows / WASD to move, <strong>Space</strong> to jump, <strong>P</strong> pause,
+  <strong>M</strong> mute, <strong>R</strong> back to checkpoint.
+  Click the page first if the music has not started.
+  Add <code>?selftest</code> to the URL to run the built-in audit and watch a bot play the level.
+</p>
+<p class="credit">
+  Urban tileset art &copy; <strong>Dlou Saiyan</strong> &mdash; used with permission; licensed for this project only
+  (no resale or redistribution as an asset pack). Player, enemies, terrain art and all music/SFX are generated
+  at runtime (canvas + Web Audio API). See <code>README.md</code> for the full asset manifest and credits.
+</p>
+<script>
+//__GAME_JS__
+</script>
+<script>
+(function () {
+  function fail(msg) {
+    var el = document.getElementById('fallback');
+    el.hidden = false;
+    el.textContent = msg;
+  }
+  window.addEventListener('error', function (ev) {
+    fail('The game hit an error: ' + (ev.message || ev.type));
+  });
+  window.addEventListener('DOMContentLoaded', function () {
+    var canvas = document.getElementById('game');
+    try {
+      AA.Game.init(canvas);
+      AA.Game.start();
+    } catch (err) {
+      fail('Could not start the game: ' + err.message);
+      throw err;
+    }
+    if (/[?&]selftest/.test(location.search)) AA.selfTest(AA.Game);
+  });
+})();
+</script>
+</body>
+</html>
