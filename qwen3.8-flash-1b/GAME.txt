@@ -1,0 +1,48 @@
+create a single playable level of a 2D platformer game that runs inside a browser.  The game should be a 2D platformer in the spirit of Mario Brothers, however, it takes place in Ann Arbor, Michigan.  As possible, include Ann Arbor references and landmarks within the game.
+
+Create all game code in this directory, dont go up the directory structure.
+
+There is a tileset provided in the "urbantileset" directory.  Use this tileset to create the game. The tileset is in the file urbantileset32x32.png  - an example cityscape is in example.png. Also, there is a sprites directory you should use for the playable character and other assets for the game. Use any combination of assets and tilesets that you wish.
+
+ASSET MANIFEST — READ THIS BEFORE OPENING ANY IMAGE FILE:
+Do not try to visually inspect urbantileset32x32.png or the packed sprite sheets yourself.
+Read ASSETS.md instead — it already tells you, in text, exactly which files/pixel-rects to use
+for ground tiles, the player character, enemies, background props, buildings, street furniture,
+etc., plus specific option suggestions (e.g. which character sprites make a good player, which
+urban-tileset ids make a good storefront). For the urban tileset specifically, use
+manifest/urban_tileset_manifest.json for exact pixel coordinates (x,y,w,h) of every usable
+sprite — it is pre-cropped for you, do not guess coordinates from the raw sheet. The Kenney kit
+in sprites/ is already sliced into one PNG file per tile (sprites/Tiles/tile_NNNN.png etc.) —
+reference those files directly by name.
+
+Follow the "do not use" flags in ASSETS.md (a couple of urban-tileset sprites are flat color
+swatches, and one is a rooftop billboard with the asset artist's name baked into it — that one
+belongs on a credits screen, not in the level). The urban tileset also requires a visible credit
+to "Dlou Saiyan" somewhere (e.g. a small credits line) per its license.
+
+IMPORTANT — NO ANN ARBOR-SPECIFIC ART EXISTS: neither asset pack contains any actual Ann Arbor
+imagery (no Burton Tower, no stadium, no Diag, no block-M, etc.). Ann Arbor references in this
+game must come from level design and on-canvas TEXT LABELS drawn over generic building/sign
+sprites (e.g. fillText "MICHIGAN STADIUM" over a generic building facade, or a sign prop reading
+"THE DIAG"), not from matching a landmark to a sprite that doesn't exist. Treat this as
+intentional low-fi signage/parody flavor, not a gap to solve by drawing new pixel art.
+
+Design one playable level (it can be pretty short) that the player can play through.
+
+To run the game, the user need only go to the index.html in the directory (it will be hosted on the internet eventually).
+
+Compose and generate simple music for the game. The music should play throughout the gameplay. If you can make some sound effects, do that too.
+
+AUDIO — HOW TO DO THIS: you cannot output real audio/MIDI files, so don't try. Generate music
+and sound effects procedurally at runtime using the browser's Web Audio API (OscillatorNode +
+GainNode envelopes) written directly in your JavaScript — e.g. a short looping square/triangle
+wave chiptune melody for background music, and quick oscillator blips for jump/coin/stomp
+sound effects. Do not use MIDI, do not fetch or embed external audio files, and do not require
+any external library for this — plain Web Audio API code is sufficient and keeps the game a
+single self-contained set of files that just work when index.html is opened.
+
+The music does not need to be musically polished — "interesting" beats "good." A fixed
+pre-written loop is fine, but you're also encouraged to make it procedural/generative if you
+want (e.g. a simple algorithmic step-sequencer, randomized arpeggios over a chord progression,
+a seeded pattern that varies each playthrough) rather than one static melody. Same spirit for
+sound effects: quick, cheap, and characterful is the bar, not production quality.

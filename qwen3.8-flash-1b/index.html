@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Diag Dash — An Ann Arbor Sprint</title>
+  <meta name="description" content="A single-level 2D platformer set in a pixel-art Ann Arbor, Michigan. Runs entirely offline: procedural art and Web Audio chiptune." />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header id="top">
+    <h1>DIAG&nbsp;DASH <span class="sub">— An Ann Arbor Sprint · World 1-1</span></h1>
+    <div class="toolbar">
+      <button id="btn-pause" title="Pause (P)">⏸</button>
+      <button id="btn-mute" title="Mute (M)">🔊</button>
+      <button id="btn-restart" title="Restart (R)">↻</button>
+    </div>
+  </header>
+
+  <div id="stage">
+    <canvas id="game" width="960" height="544"></canvas>
+    <div id="overlay" class="hidden"></div>
+
+    <div id="touch">
+      <button id="btn-left" aria-label="Move left">◀</button>
+      <button id="btn-jump" aria-label="Jump">⤴</button>
+      <button id="btn-right" aria-label="Move right">▶</button>
+    </div>
+  </div>
+
+  <section id="help">
+    <p><b>Move</b> ← → or A&nbsp;D &nbsp;·&nbsp; <b>Hurry</b> hold Shift/Z &nbsp;·&nbsp; <b>Jump</b> Space / ↑ / X (hold longer = higher) &nbsp;·&nbsp; <b>Pause</b> P &nbsp;·&nbsp; <b>Mute</b> M &nbsp;·&nbsp; <b>Restart</b> R</p>
+    <p class="hint">Stomp the campus rovers. Collect maize coins (the “M” ones). Grab an espresso for FURY: faster legs, brick smashing, and a double jump. Reach the flag at Elsey Street.</p>
+  </section>
+
+  <footer id="credits">
+    <p class="lic">
+      City scenery art from the <i>Urban City Tileset (Basic 32×32)</i> — <b>© Dlou Saiyan</b>,
+      used with permission for this project. Per its license the tileset may be used and modified
+      here but must not be resold, redistributed, or repackaged; credit to <b>Dlou Saiyan</b>
+      (<a href="https://www.dlousaiyan.com/" rel="nofollow">dlousaiyan.com</a>) is required and appears in-game.
+    </p>
+    <p class="lic">
+      Gameplay tiles, characters, and music are generated procedurally at runtime (Web Audio API oscillators +
+      envelopes; no audio files). Ann Arbor landmarks appear as deliberate low-fi text signage over generic
+      buildings — parody flavour, not real logos or building reproductions. No Ann Arbor-specific artwork is
+      included in either asset pack.
+    </p>
+    <p class="lic dim">Built as a self-contained set of files: open <code>index.html</code> and play. Nothing is fetched over the network.</p>
+  </footer>
+
+  <script src="./urban_sprites.js"></script>
+  <script src="./art.js"></script>
+  <script src="./audio.js"></script>
+  <script src="./level.js"></script>
+  <script src="./game.js"></script>
+</body>
+</html>

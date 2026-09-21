@@ -1,0 +1,126 @@
+/* style.css — page shell for "Diag Dash: An Ann Arbor Sprint" */
+
+:root {
+  --maize: #ffcb05;
+  --blue: #0f3b73;
+  --ink: #05101f;
+  --panel: #0a1424;
+  --text: #cfe3f5;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background:
+    radial-gradient(1200px 600px at 50% -10%, #14284a 0%, #05101f 70%),
+    var(--ink);
+  color: var(--text);
+  font-family: "Trebuchet MS", Verdana, system-ui, sans-serif;
+  text-align: center;
+}
+
+#top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 10px 14px 4px;
+  flex-wrap: wrap;
+}
+
+#top h1 {
+  font-size: clamp(16px, 2.4vw, 26px);
+  margin: 0;
+  letter-spacing: 3px;
+  color: var(--maize);
+  text-shadow: 0 2px 0 #000a;
+}
+#top h1 .sub { color: var(--text); letter-spacing: 1px; font-size: 0.6em; }
+
+.toolbar { display: flex; gap: 8px; }
+.toolbar button {
+  width: 42px; height: 34px;
+  font-size: 17px;
+  line-height: 1;
+  color: var(--maize);
+  background: #10203a;
+  border: 2px solid #2b4f80;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.toolbar button:hover { background: #1d3557; }
+.toolbar button.off { color: #6d7c96; border-color: #21384f; }
+
+#stage {
+  position: relative;
+  width: min(96vw, calc((100vh - 210px) * 1.7647));
+  min-width: 320px;
+  margin: 8px auto 0;
+  aspect-ratio: 960 / 544;
+  border-radius: 12px;
+  box-shadow: 0 0 0 3px #12233c, 0 12px 40px #000c;
+  overflow: hidden;
+  background: #0a1424;
+}
+
+#stage canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+  touch-action: none;
+}
+
+#overlay { pointer-events: none; }
+#overlay.hidden { display: none; }
+
+/* touch controls: only on touch-ish devices */
+#touch {
+  position: absolute;
+  left: 0; right: 0; bottom: 8px;
+  display: none;
+  justify-content: space-between;
+  padding: 0 14px;
+  gap: 12px;
+  pointer-events: none;
+}
+#touch button {
+  pointer-events: auto;
+  width: 74px; height: 62px;
+  font-size: 26px;
+  color: var(--maize);
+  background: #0a1424b8;
+  border: 2px solid #35597f;
+  border-radius: 12px;
+  touch-action: none;
+  user-select: none;
+}
+#touch button:active { background: #1d3557; }
+@media (pointer: coarse) { #touch { display: flex; } }
+
+#help {
+  max-width: 980px;
+  margin: 10px auto 0;
+  padding: 0 16px;
+  font-size: 14px;
+}
+#help .hint { color: #9ec8ff; }
+
+#credits {
+  max-width: 980px;
+  margin: 14px auto 26px;
+  padding: 0 16px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+#credits .lic { margin: 6px 0; color: #a8bdd4; }
+#credits .dim { color: #6d7c96; }
+#credits a { color: var(--maize); }
+#credits code { background: #10203a; padding: 1px 5px; border-radius: 5px; }
+
+@media (max-width: 700px) {
+  #stage { width: 96vw; }
+  #help { font-size: 12px; }
+}

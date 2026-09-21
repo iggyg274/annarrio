@@ -1,0 +1,24 @@
+==================
+Technical Details:
+==================
+- 32x32 px tile size
+-32 rows, 32 columns siprite sheet
+
+==================
+Asset License:
+==================
+Copyright (c) 2026 DlouSaiyan
+- ✅ You may: Use and modify these assets in personal or commercial projects.
+- ❌ You may NOT: Resell, redistribute, or include these assets in other asset packs, even after modification.
+- Credit is required: Dlou Saiyan.
+
+==================
+Dlou Saiyan – Pixel Artist
+==================
+
+Thank you for supporting my work. It allows me to continue creating high-quality pixel art worlds for indie developers.
+
+If you would like to see custom work Visit:
+-https://www.dlousaiyan.com/
+
+— Dlou Saiyan
