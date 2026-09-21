@@ -107,6 +107,10 @@
 	quant: "4b", size: "~100GB",
 	dir: "qwen3.8-flash", machine: "RTX 6000", runtime: "15 minutes", notes:"lookup table in RAM" },
 
+      { type: "Local MOE", name: "Qwen3.8-Flash-Next 1bit",
+	quant: "1b", size: "~100GB",
+	    dir: "qwen3.8-flash-1b", machine: "DGX Spark", runtime: "55 minutes", notes:"compare to 4bit above, same model, different quant" },
+
       { type: "Local MOE", name: "Deepseek-V4",
 	quant: "4b", size: "~155GB",
 	dir: "deepseek4", machine: "RTX 6000", runtime: "40 minutes", notes:"MOE offload" },
