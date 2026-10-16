@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Depths of the Witch - a tiny roguelike</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <div id="viewwrap">
+    <canvas id="view"></canvas>
+    <div id="log"></div>
+    <div id="tooltip"></div>
+    <div id="loading">Loading sprites...</div>
+  </div>
+  <aside id="side">
+    <h1>Depths of the Witch</h1>
+    <div class="row"><span id="stat-class">-</span> &middot; Lvl <span id="stat-level">1</span></div>
+    <div class="bar"><div id="hp-fill" class="fill"></div><span id="hp-text" class="bar-text"></span></div>
+    <div class="bar xp"><div id="xp-fill" class="fill"></div></div>
+    <div class="row">Depth <b id="stat-depth">1</b> &middot; Gold <b id="stat-gold" class="gold">0</b> &middot; Turn <span id="stat-turn">0</span></div>
+    <div class="row" id="stat-status"></div>
+    <canvas id="minimap"></canvas>
+    <h3>Pack</h3>
+    <div id="inv-list"></div>
+    <div class="hint">? help &middot; i items &middot; f special &middot; x travel to ladder</div>
+  </aside>
+
+  <div id="title" class="overlay">
+    <div class="panel">
+      <h1>Depths of the Witch</h1>
+      <p class="tag">A small turn-based dungeon crawl in the spirit of NetHack.<br>
+        Descend 8 levels, defeat the Witch of the Pit, take her <span class="gold">Golden Chalice</span>, and escape.</p>
+      <div class="classes">
+        <div class="class-card" data-cls="adventurer"><canvas width="140" height="110"></canvas><h2>1 &middot; Adventurer</h2><div class="blurb"></div></div>
+        <div class="class-card" data-cls="dwarf"><canvas width="220" height="110"></canvas><h2>2 &middot; Dwarf</h2><div class="blurb"></div></div>
+      </div>
+      <p class="hint">Click a hero or press 1 / 2. Enter starts the highlighted hero.</p>
+      <h3>Denizens of the dungeon</h3>
+      <div id="bestiary"></div>
+      <p class="credits">All art: the elthenassets library (sprite sheets by Elthen), loaded through its catalog.json.</p>
+    </div>
+  </div>
+
+  <div id="inventory" class="overlay-box"></div>
+
+  <div id="help" class="overlay-box">
+    <h2>How to play</h2>
+    <table>
+      <tr><td>Arrows / hjkl yubn / numpad</td><td>move, attack by moving into a monster</td></tr>
+      <tr><td>Shift + direction</td><td>run</td></tr>
+      <tr><td>click</td><td>travel to a spot (click a foe as Adventurer: shoot)</td></tr>
+      <tr><td>. or 5</td><td>wait a turn</td></tr>
+      <tr><td>s</td><td>search for hidden traps around you</td></tr>
+      <tr><td>g or ,</td><td>pick up</td></tr>
+      <tr><td>&gt; / &lt;</td><td>climb down / up a ladder</td></tr>
+      <tr><td>x</td><td>travel to the known ladder down</td></tr>
+      <tr><td>f</td><td>class special: bow shot (Adventurer) / whirlwind (Dwarf)</td></tr>
+      <tr><td>i</td><td>use an item &middot; q quaff &middot; r read &middot; e eat &middot; t throw bomb</td></tr>
+      <tr><td>d</td><td>drop an item</td></tr>
+    </table>
+    <p>Potions and scrolls are unidentified: their colours mean something different every game, and you learn what one does by trying it.
+       Walk into a chest to open it (locked ones need a golden key or some bashing).
+       Hidden spike traps and trap doors lurk in the floor; purple portals teleport you.
+       You get hungry, so eat. Monsters asleep show a <i>z</i>; pigs are peaceful unless you attack them.</p>
+    <p class="hint">Press any key to close.</p>
+  </div>
+
+  <div id="gameover" class="overlay">
+    <div class="panel">
+      <h1 id="go-title">You have died</h1>
+      <p id="go-reason"></p>
+      <div id="go-stats"></div>
+      <div id="go-scores"></div>
+      <p class="hint">Press Enter to return to the title screen.</p>
+    </div>
+  </div>
+</div>
+
+<script src="js/asset_data.js"></script>
+<script src="js/rng.js"></script>
+<script src="js/assets.js"></script>
+<script src="js/data.js"></script>
+<script src="js/mapgen.js"></script>
+<script src="js/game.js"></script>
+<script src="js/render.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
